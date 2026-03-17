@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>镖人晚宴 - 游戏道具包</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #c9a227 0%, #8b6914 100%);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        header h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3.5em;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            color: #f0e6d2;
+            font-size: 1.2em;
+        }
+        
+        .section {
+            background: #f9f4e8;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .section h2 {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #8b0000;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #c9a227;
+            padding-bottom: 10px;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+            border: 4px solid #c9a227;
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #f0e6d2;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .card .biao {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 4em;
+            color: #c9a227;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .card .footer {
+            margin-top: 20px;
+            color: #d4c5a3;
+            font-size: 0.9em;
+        }
+        
+        .yinpiao {
+            background: linear-gradient(135deg, #f5e6c8 0%, #d4c5a3 100%);
+            border: 3px solid #8b6914;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .yinpiao h4 {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #8b0000;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .yinpiao .amount {
+            font-size: 2.5em;
+            text-align: center;
+            color: #8b0000;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .yinpiao .seal {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #8b0000;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b0000;
+            font-weight: bold;
+            transform: rotate(-15deg);
+        }
+        
+        .jiefei-card {
+            background: linear-gradient(135deg, #2d5016 0%, #1a3009 100%);
+            border: 3px solid #4a7c23;
+            color: #f0e6d2;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .jiefei-card.danger {
+            background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+            border-color: #ff4444;
+        }
+        
+        .jiefei-card h4 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .jiefei-card .icon {
+            font-size: 3em;
+            margin: 15px 0;
+        }
+        
+        .certificate {
+            background: linear-gradient(135deg, #f9f4e8 0%, #e8d5b5 100%);
+            border: 8px double #c9a227;
+            padding: 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .certificate h2 {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #8b0000;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border: none;
+        }
+        
+        .certificate .content {
+            font-size: 1.3em;
+            line-height: 2;
+            color: #2c1810;
+        }
+        
+        .certificate .signature {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .certificate .seal-area {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #8b0000;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b0000;
+            font-weight: bold;
+        }
+        
+        .host-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f0e6d2;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #c9a227;
+            margin: 15px 0;
+        }
+        
+        .host-card h4 {
+            color: #c9a227;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .host-card .script {
+            font-style: italic;
+            line-height: 1.8;
+            color: #d4c5a3;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #f0e6d2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: #8b0000;
+        }
+        
+        .print-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            font-size: 1.3em;
+            background: linear-gradient(135deg, #c9a227 0%, #8b6914 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Noto Serif SC', serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            header {
+                background: #c9a227;
+                box-shadow: none;
+            }
+            
+            .section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            
+            .print-btn {
+                display: none;
+            }
+        }
+        
+        .info-box {
+            background: #fff8dc;
+            border: 2px solid #c9a227;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-box h4 {
+            color: #8b0000;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 镖人晚宴</h1>
+            <p>2026 新春武侠主题 · 游戏道具包</p>
+            <p style="margin-top: 10px; font-size: 1em;">游戏名称：镖局押宝 | 参与人数：5 位代表 | 时长：10-15 分钟</p>
+        </header>
+        
+        <button class="print-btn" onclick="window.print()">🖨️ 打印全部道具</button>
+        
+        <!-- 镖局卡 -->
+        <div class="section">
+            <h2>📋 一、镖局卡（5 张）</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>一号镖局</h3>
+                    <div class="biao">鏢</div>
+                    <div class="footer">2026 新春 镖人晚宴</div>
+                </div>
+                <div class="card">
+                    <h3>二号镖局</h3>
+                    <div class="biao">鏢</div>
+                    <div class="footer">2026 新春 镖人晚宴</div>
+                </div>
+                <div class="card">
+                    <h3>三号镖局</h3>
+                    <div class="biao">鏢</div>
+                    <div class="footer">2026 新春 镖人晚宴</div>
+                </div>
+                <div class="card">
+                    <h3>四号镖局</h3>
+                    <div class="biao">鏢</div>
+                    <div class="footer">2026 新春 镖人晚宴</div>
+                </div>
+                <div class="card">
+                    <h3>五号镖局</h3>
+                    <div class="biao">鏢</div>
+                    <div class="footer">2026 新春 镖人晚宴</div>
+                </div>
+            </div>
+            <div class="info-box">
+                <h4>📝 制作建议</h4>
+                <ul>
+                    <li>纸张：200-300g 铜版纸或卡纸</li>
+                    <li>尺寸：A5 或 15x10cm</li>
+                    <li>颜色：红色或古铜色背景</li>
+                    <li>字体：楷体/隶书/魏碑</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 劫匪卡 -->
+        <div class="section">
+            <h2>🃏 二、劫匪卡（10 张）</h2>
+            
+            <h3 style="color: #2d5016; margin: 20px 0 15px;">平安卡（7 张）</h3>
+            <div class="jiefei-card">
+                <h4>平安无事</h4>
+                <div class="icon">✓</div>
+                <p>今日无土匪出没</p>
+            </div>
+            
+            <h3 style="color: #ff4444; margin: 20px 0 15px;">被劫卡（3 张）</h3>
+            <div class="jiefei-card danger">
+                <h4>被劫了！</h4>
+                <div class="icon">⚔️</div>
+                <p>土匪埋伏！镖银被抢！</p>
+            </div>
+            
+            <div class="info-box">
+                <h4>📝 制作建议</h4>
+                <ul>
+                    <li>平安卡：绿色边框</li>
+                    <li>被劫卡：红色边框 + 火焰图案</li>
+                    <li>背面：统一武侠花纹</li>
+                    <li>尺寸：扑克牌大小</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 银票 -->
+        <div class="section">
+            <h2>💰 三、银票（50 张）</h2>
+            <div class="yinpiao">
+                <h4>鏢局通用銀票</h4>
+                <div class="amount">壹 两</div>
+                <p style="text-align: center; color: #8b6914;">2026 年 新春 镖人晚宴限定</p>
+                <div class="seal">鏢局</div>
+            </div>
+            <div class="info-box">
+                <h4>📝 制作建议</h4>
+                <ul>
+                    <li>纸张：米黄色做旧</li>
+                    <li>尺寸：10x5cm</li>
+                    <li>边框：龙纹/云纹</li>
+                    <li>数量：每人 10 张，共 50 张</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 奖状 -->
+        <div class="section">
+            <h2>🏆 四、奖状</h2>
+            <div class="certificate">
+                <h2>天下第一镖</h2>
+                <div class="content">
+                    <p>授 予：_________________</p>
+                    <p>在 2026 新春镖人晚宴中</p>
+                    <p>镖局押宝游戏荣获冠军</p>
+                    <p>特发此证 以资鼓励</p>
+                </div>
+                <div class="signature">
+                    <p>2026 年____月____日</p>
+                    <div class="seal-area">盖章处</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主持人流程卡 -->
+        <div class="section">
+            <h2>🎤 五、主持人流程卡</h2>
+            
+            <div class="host-card">
+                <h4>【开场白】（1 分钟）</h4>
+                <div class="script">
+                    "各位镖头、各位大侠！晚上好！"<br>
+                    "今晚咱们镖局要押送一批重要货物，但江湖险恶，有土匪埋伏！"<br>
+                    "在座 5 位镖头，你们敢不敢押上全部身家？"<br>
+                    "最后银子最多的，就是今晚的'天下第一镖'！"
+                </div>
+            </div>
+            
+            <div class="host-card">
+                <h4>【每轮流程】</h4>
+                <div class="script">
+                    1️⃣ 选镖局 (30 秒) → 5 人各选 1-5 号<br>
+                    2️⃣ 下注 (30 秒) → 押自己的镖局"这轮平安"<br>
+                    3️⃣ 抽劫匪卡 → 大声宣布结果<br>
+                    4️⃣ 结算 → 被劫：押注全扣 / 平安：押注翻倍
+                </div>
+            </div>
+            
+            <div class="host-card">
+                <h4>【揭晓时刻】</h4>
+                <div class="script">
+                    "好！下注完毕！"<br>
+                    "现在开镖——！"<br>
+                    （抽卡，停顿 2 秒制造紧张）<br>
+                    "X 号镖局... 被劫了！/ 平安无事！"
+                </div>
+            </div>
+            
+            <div class="host-card">
+                <h4>【收尾颁奖】</h4>
+                <div class="script">
+                    "5 轮结束！"<br>
+                    "恭喜 X 号镖局的 XX 大侠，累计 XX 两银子！"<br>
+                    "成为今晚的'天下第一镖'！"<br>
+                    （颁发奖状 + 奖品）
+                </div>
+            </div>
+        </div>
+        
+        <!-- 准备清单 -->
+        <div class="section">
+            <h2>✅ 准备清单</h2>
+            <ul class="checklist">
+                <li>打印镖局卡 5 张</li>
+                <li>打印劫匪卡 10 张（7 平安 +3 被劫）</li>
+                <li>打印银票 50 张</li>
+                <li>打印奖状 1 张</li>
+                <li>打印流程卡 1 张</li>
+                <li>准备奖品 3-5 份</li>
+                <li>准备木盒子/布袋</li>
+                <li>测试背景音乐</li>
+                <li>主持人排练 1 遍</li>
+            </ul>
+        </div>
+        
+        <!-- 背景音乐 -->
+        <div class="section">
+            <h2>🎵 背景音乐建议</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                <tr style="background: #c9a227; color: white;">
+                    <th style="padding: 12px; text-align: left;">场景</th>
+                    <th style="padding: 12px;">音乐</th>
+                    <th style="padding: 12px;">时长</th>
+                </tr>
+                <tr style="background: #f9f4e8;">
+                    <td style="padding: 12px; border: 1px solid #ddd;">开场</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">《镖人》电影主题曲</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">2 分钟</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;">下注时</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">紧张鼓点</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">30 秒</td>
+                </tr>
+                <tr style="background: #f9f4e8;">
+                    <td style="padding: 12px; border: 1px solid #ddd;">揭晓时</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">突然安静 → 揭晓音效</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">10 秒</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;">颁奖</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">欢庆音乐</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">1 分钟</td>
+                </tr>
+            </table>
+            <p style="margin-top: 15px; color: #8b0000;"><strong>搜索关键词：</strong>武侠电影配乐、镖人 OST、江湖 BGM</p>
+        </div>
+        
+        <button class="print-btn" onclick="window.print()">🖨️ 打印全部道具</button>
+        
+        <!-- 二维码区域 -->
+        <div class="section" style="text-align: center;">
+            <h2>📱 手机扫码访问</h2>
+            <p style="margin-bottom: 20px; color: #8b0000;">用手机扫一扫，直接在手机上查看和打印</p>
+            <div style="display: inline-block; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+                <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=http://192.168.1.70:8080/%E9%95%96%E4%BA%BA%E6%99%9A%E5%AE%B4%E6%B8%B8%E6%88%8F.html&choe=UTF-8" alt="二维码" style="width: 250px; height: 250px;">
+            </div>
+            <p style="margin-top: 20px; color: #666; font-size: 0.9em;">或手动访问：<br><strong>http://192.168.1.70:8080/镖人晚宴游戏.html</strong></p>
+            <p style="margin-top: 10px; color: #8b0000; font-size: 0.85em;">⚠️ 确保手机和电脑在同一 WiFi 网络</p>
+        </div>
+        
+        <footer style="text-align: center; padding: 30px; color: #f0e6d2;">
+            <p>祝活动顺利！玩得开心！🎉</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">2026 新春镖人晚宴 · 游戏道具包</p>
+        </footer>
+    </div>
+</body>
+</html>
